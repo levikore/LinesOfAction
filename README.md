@@ -25,7 +25,7 @@ The weight of each state is derided from two characteristics:
 
 ![image](https://user-images.githubusercontent.com/41550958/111065483-bcbda880-84c2-11eb-843a-9323d712e620.png)
 
-This is the characteristic of aspiration for unity.
+  This is the characteristic of aspiration for unity.
 
 2)Centralization Heuristic - This feature gives weight to each level on the game board in the following way:
 
@@ -35,10 +35,11 @@ This is the characteristic of aspiration for unity.
   
   ![image](https://user-images.githubusercontent.com/41550958/111065610-4b322a00-84c3-11eb-8958-581dbc18f8d0.png)
 
-This is the characteristic of aspiration for proximity to the center. 
+  This is the characteristic of aspiration for proximity to the center. 
 
 
 The weight of the state is calculated with the following formula:
+
  (myCentralization – myEulerNum) - (oppCentralization – oppEulerNum)
  
 ## Demo:
