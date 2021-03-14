@@ -27,7 +27,7 @@ The weight of each state is derided from two characteristics:
 
   This is the characteristic of aspiration for unity.
 
-2)Centralization Heuristic - This feature gives weight to each level on the game board in the following way:
+2) Centralization Heuristic - This feature gives weight to each level on the game board in the following way:
 
 ![image](https://user-images.githubusercontent.com/41550958/111065572-2938a780-84c3-11eb-98b1-e64d849803a7.png)
 
