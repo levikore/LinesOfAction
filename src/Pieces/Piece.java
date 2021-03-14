@@ -34,17 +34,18 @@ public class Piece {
 	
 		
 	public int GetCol(){		
+
 		return this.position % 8;
 	}
 	
-	public int GetRow(){		
-    	int  p=  this.position  / 8;
-    	return p;
+	public int GetRow(){
+		return this.position  / 8;
 	}
 
 
 	public void SetNewPos(int i) {
-		 this.position = i;		
+
+		this.position = i;
 	}
 	 
 }

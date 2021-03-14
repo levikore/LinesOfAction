@@ -1,15 +1,13 @@
+import Pieces.Piece;
 
 import java.util.Enumeration;
-
-import Pieces.Color;
-import Pieces.Piece;
 
 import static java.lang.System.out;
 
 
 public class AI implements Runnable{
 
-	private int turn;
+	private final int turn;
 	GamePanel gamePanel;
 	int fromKey;
 	int toRow;
@@ -115,7 +113,7 @@ public class AI implements Runnable{
 	
 	private int centralization(Player player)
 	{//O(n), n - num of keys of particular color
-		int value, sum=0, boardSquere=GamePanel.N*GamePanel.N, key;
+		int value, sum=0, key;
 
 		 Enumeration  keys = player.pieces.keys(); 
 		 while(keys.hasMoreElements()) 
@@ -166,10 +164,8 @@ public class AI implements Runnable{
 						 {	 
 							 GamePanel child=new GamePanel(gamePanel);
 							
-							 child.players[index].pointFrom = new Piece( piece.position, piece.color); //From
-							 if(piece != null  && child.players[index].CheckRules(row,col, mask))
-							 {
-								 
+							 Player.pointFrom = new Piece( piece.position, piece.color); //From
+							 if(child.players[index].CheckRules(row,col, mask)) {
 								 int tokey = row*GamePanel.N + col; 
 							 	 if ( child.players[oppindex].pieces.containsKey(tokey))
 							 		 child.players[oppindex].pieces.remove(tokey); //eat opponent
@@ -184,7 +180,6 @@ public class AI implements Runnable{
 						 	 }
 						 			
 						 }//for(col=0;col<GamePanel.N;col++)
-	    	         
 	    
 			}//while
 		this.fromKey=bestKey;
@@ -194,7 +189,7 @@ public class AI implements Runnable{
 		out.println("from (" + fromKey / 8 + "," + fromKey % 8  + ") to (" + toRow +"," + toCol + ")");
 		
 		Main.infoPanel.textArea.append(gamePanel.players[index].color+": "+"(" + fromKey / 8 + "," + fromKey % 8 + ")  -->  (" + toRow + "," + toCol + ")\n");
-		gamePanel.players[index].pointFrom = new Piece(this.fromKey, gamePanel.players[index].color);
+		Player.pointFrom = new Piece(this.fromKey, gamePanel.players[index].color);
 		gamePanel.players[index].Move(toRow, toCol);
 	   
 
@@ -254,12 +249,11 @@ public class AI implements Runnable{
 					 for(int col=0;col<GamePanel.N;col++)
 					 {
 						GamePanel child=new GamePanel(node);
-						child.players[index].pointFrom = new Piece( piece.position, piece.color);;//From
-					 	if(piece != null  && child.players[index].CheckRules(row,col, mask))
+						Player.pointFrom = new Piece( piece.position, piece.color);;//From
+					 	if(child.players[index].CheckRules(row,col, mask))
 					 	{
-					 		int tokey = row*GamePanel.N + col; 
-					 		if ( child.players[oppindex].pieces.containsKey(tokey))
-					 			 child.players[oppindex].pieces.remove(tokey); //eat opponent
+					 		int tokey = row*GamePanel.N + col;
+							child.players[oppindex].pieces.remove(tokey); //eat opponent
 					 		 
 					 		double minval=minValue(child, depth-1);
 					 		if(minval>max)
@@ -310,8 +304,8 @@ public class AI implements Runnable{
 					 for(int col=0;col<GamePanel.N;col++)
 					 {
 						GamePanel child=new GamePanel(node);
-					    child.players[oppindex].pointFrom =  new Piece( piece.position, piece.color);//From
-					 	if(piece != null  && child.players[oppindex].CheckRules(row,col, mask))
+					    Player.pointFrom =  new Piece( piece.position, piece.color);//From
+					 	if(child.players[oppindex].CheckRules(row,col, mask))
 					 	{
 					 		int tokey = row*GamePanel.N + col; 
 					 		if ( child.players[index].pieces.containsKey(tokey))
@@ -321,7 +315,6 @@ public class AI implements Runnable{
 					 		if(maxval<min)
 					 			min=maxval;
 					 	}
-					 			
 					 }//for(col=0;col<GamePanel.N;col++)
         	    
 		}//while

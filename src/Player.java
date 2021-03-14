@@ -20,7 +20,7 @@ public class Player {
 //-----------------------------------------------------------------------------------	
 	  public Player(Color color){
 		  this.color = color;
-		  this.pointFrom = null;	
+		  pointFrom = null;
 		  this.myMask=0L;
 		  }
 	  

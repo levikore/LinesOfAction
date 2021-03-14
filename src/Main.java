@@ -151,44 +151,40 @@ public class Main {
 			    infoPanel.labelMode.setText("Mode: Player vs. Computer: medium");
 		  }
 		 } );
-		
-		hard.addActionListener(new java.awt.event.ActionListener() //add a listener to this item
-		 {
-		  public void actionPerformed(java.awt.event.ActionEvent evt) { //listen for event
-			  
-			    int key1, key2;
-			    Enumeration  keys1 = panel.players[0].pieces.keys(); 
-			    Enumeration  keys2 = panel.players[1].pieces.keys(); 
-			    while(keys1.hasMoreElements()) 
-			    { 
-			    	key1=Integer.parseInt(keys1.nextElement().toString());
-			    	panel.players[0].pieces.remove(key1);
-			    }
-			    
-			    while(keys2.hasMoreElements()) 
-			    { 
-			    	key2=Integer.parseInt(keys2.nextElement().toString());
-			    	panel.players[1].pieces.remove(key2);
-			    }
-			  
-			    panel.showGUI();
-			    panel.repaint();
-			    panel.turn=1;
-			    infoPanel.labelTurn.setText("Turn: BLACK");
-			    infoPanel.textArea.setText("Start game...\n----------------------------\n");
-		   
-			    panel.isAI=true;
-			    panel.depth=3;
-			    infoPanel.labelMode.setText("Mode: Player vs. Computer: hard");
-		  }
-		 } );
-		     
-		 exit.addActionListener(new java.awt.event.ActionListener() //add a listener to this item
-		  {
-		   public void actionPerformed(java.awt.event.ActionEvent evt) { //listen for event  
-		   System.exit(0);
-		   }
-		   } );
+
+		//add a listener to this item
+		hard.addActionListener(evt -> { //listen for event
+
+			  int key1, key2;
+			  Enumeration  keys1 = panel.players[0].pieces.keys();
+			  Enumeration  keys2 = panel.players[1].pieces.keys();
+			  while(keys1.hasMoreElements())
+			  {
+				  key1=Integer.parseInt(keys1.nextElement().toString());
+				  panel.players[0].pieces.remove(key1);
+			  }
+
+			  while(keys2.hasMoreElements())
+			  {
+				  key2=Integer.parseInt(keys2.nextElement().toString());
+				  panel.players[1].pieces.remove(key2);
+			  }
+
+			  panel.showGUI();
+			  panel.repaint();
+			  panel.turn=1;
+			  infoPanel.labelTurn.setText("Turn: BLACK");
+			  infoPanel.textArea.setText("Start game...\n----------------------------\n");
+
+			  panel.isAI=true;
+			  panel.depth=3;
+			  infoPanel.labelMode.setText("Mode: Player vs. Computer: hard");
+		});
+
+		//add a listener to this item
+		exit.addActionListener(evt -> { //listen for event
+		System.exit(0);
+		});
 	   
 	}
 

@@ -1,22 +1,14 @@
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
+import Pieces.Color;
+import Pieces.Piece;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import java.util.Random;
-
-import Pieces.Piece;
-import Pieces.Color;
-
 
 import static java.lang.System.out;
-
 
 
 class GamePanel extends JPanel{
@@ -70,13 +62,7 @@ class GamePanel extends JPanel{
     public GamePanel(GamePanel gamePanel)
     {
     	super();
-       /* try {    
-        	imageBoard=new ImageIcon("pictures/boardd.jpg").getImage();
-      
-        } catch (Exception ex) {
-              // handle exception...
-        }*/
-        this.setBounds(0, 0, N*Piece.SIZE,N*Piece.SIZE);
+		this.setBounds(0, 0, N*Piece.SIZE,N*Piece.SIZE);
         
         players = new Player[2];
         
@@ -126,7 +112,7 @@ class GamePanel extends JPanel{
     } //ChangeTurn.
     
     //---------------------------------------------------------------------------
-    public boolean  DoStep( int col, int row)  {//O(N^2)
+    public void DoStep(int col, int row)  {//O(N^2)
         boolean   bDoStep = false;
         int key = row*GamePanel.N + col;
         
@@ -156,7 +142,7 @@ class GamePanel extends JPanel{
         	{
         		 int oppindex=(index+1)%2;//opposite player
         		 long mask=createPlayerMask(players[oppindex]); //(index+1)%2  opposite player
-        		 int oldRow = players[index].pointFrom.GetRow(),  oldCol = players[index].pointFrom.GetCol();
+        		 int oldRow = Player.pointFrom.GetRow(),  oldCol = Player.pointFrom.GetCol();
         		 bDoStep =players[index].CheckRules(row,col, mask);
               
         		 if(bDoStep)
@@ -183,15 +169,12 @@ class GamePanel extends JPanel{
         		 repaint();
         	}//if(index==turn)
         	 
-        	else 
-        	{ 
+        	else {
         		Player.pointFrom=null;
-        		bDoStep = false; 
-        	}
+			}
         }// else{  // Dest 
-        
-        return bDoStep;
-    } // DoStep( int col
+
+	} // DoStep( int col
     //----------------------------------------------------------------------------
    public long createPlayerMask(Player player) //O(N^2)
    {
